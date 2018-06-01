@@ -1,0 +1,42 @@
+a .gitignore for maven 
+.target/
+*.releaseBackup
+
+# "temporary" build files
+.target/
+out/
+build/
+.gradle/
+
+#.gitignore for java
+*.class
+
+## .gitignore for eclipse
+*.pydevproject
+.project
+.metadata
+bin/**
+tmp/**
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+## .gitignore for intellij
+*.iml
+*.ipr
+*.iws
+.idea/
+
+## .gitignore for mac os x
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+
