@@ -1,46 +1,47 @@
-package com.yidian.commerce.gemini.domain.resp;
+package com.zsh.demo.domain.resp;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.yidian.commerce.gemini.domain.enums.OpenStatus;
+import com.zsh.demo.domain.enums.RespStatus;
 import lombok.Data;
+
+import static com.zsh.demo.domain.enums.RespStatus.OK;
+import static com.zsh.demo.domain.enums.RespStatus.ERROR;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class OpenResponse {
+public class Response {
     private Integer status;
     private Object data;
-    private String error;
+    private String msg;
 
-    public static OpenResponse ok() {
-        return new Builder().status(OpenStatus.OK.getValue()).build();
+    public static Response ok() {
+        return new Builder().status(OK.getValue()).msg(OK.getDesc()).build();
     }
 
-    public static OpenResponse error() {
-       return new Builder().status(OpenStatus.ERROR.getValue()).build();
+    public static Response error() {
+       return new Builder().status(ERROR.getValue()).msg(ERROR.getDesc()).build();
     }
 
-    public static OpenResponse status(OpenStatus openStatus) {
-        return new Builder().status(openStatus.getValue()).build();
+    public static Response status(RespStatus status) {
+        return new Builder().status(status.getValue()).msg(status.getDesc()).build();
     }
 
-    public OpenResponse data(Object data) {
+    public Response data(Object data) {
         this.data = data;
         return this;
     }
 
-    public OpenResponse error(String error) {
-        this.error = error;
+    public Response msg(String msg) {
+        this.msg = msg;
         return this;
     }
 
-
-
     private static class Builder {
 
-        private OpenResponse target;
+        private Response target;
 
         Builder() {
-            target = new OpenResponse();
+            target = new Response();
         }
 
         Builder status(Integer status) {
@@ -53,12 +54,12 @@ public class OpenResponse {
             return this;
         }
 
-        public Builder error(String error) {
-            target.error = error;
+        Builder msg(String msg) {
+            target.msg = msg;
             return this;
         }
 
-        OpenResponse build() {
+        Response build() {
             return target;
         }
     }

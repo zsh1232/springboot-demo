@@ -1,3 +1,26 @@
 spring:
-  profiles:
-    active: dev
+  devtools:
+    restart:
+      additional-paths: src/main/java/com/zsh/demo
+      enabled: false
+  kafka:
+    #topic
+    topic:
+      demo: abc
+      consumer-offsets: __consumer_offsets
+    #configs
+    bootstrap-servers: 10.126.14.39:9099,10.126.14.40:9099,10.126.14.43:9099
+    producer:
+      batch-size: 1
+      retries: 0
+      buffer-memory: 335544
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: test_group1
+server:
+  port: 8099
